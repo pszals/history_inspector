@@ -11,8 +11,4 @@ describe Inspector do
   it "takes only the top ten" do
     expect(described_class.new(commands).top_ten.count).to eq 10
   end
-
-  it "takes an arbitrary number of top commands" do
-    expect(described_class.new(commands).top(3).count).to eq 3
-  end
 end

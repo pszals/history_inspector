@@ -24,7 +24,7 @@ class Inspector
   end
 
   def count_commands(commands)
-    commands.reduce({}) do |memo, (_, command)|
+    commands.reduce({}) do |memo, command|
       c = combine_first_two(command)
       memo[c] ? memo[c] += 1 : memo[c] = 1
       memo
@@ -32,15 +32,11 @@ class Inspector
   end
 
   def remove_line_numbers(line)
-    line.lstrip.split("  ", 2)
+    line.lstrip.split(/\d+../, 2)[1]
   end
 
   def combine_first_two(line)
     commands = line.split(" ", 3)
-    if commands[1]
-      [commands[0], commands[1]].join(" ")
-    else
-      commands[0]
-    end
+    commands[1] ? [commands[0], commands[1]].join(" ") : commands[0]
   end
 end
