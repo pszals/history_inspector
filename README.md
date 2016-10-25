@@ -1,21 +1,14 @@
 ## What are your most common command line commands?
 
-1.) Clone the repo and cd into it:
+1.) Clone the repo, cd into it, and create a `history.txt` file:
 
-```git clone git@github.com:pszals/history_inspector.git && cd history_inspector```
+  `git clone git@github.com:pszals/history_inspector.git && cd history_inspector && touch history.txt && history > history.txt`
 
-2.) Create a `history.txt` file:
+2.) Use Ruby to get your top ten most-used commands:
 
-```touch history.txt && history > history.txt```
+  `ruby runner.rb`
 
-3.) Use IRB to check it out:
-
-```irb```
-```require './lib/inspector'```
-```i = Inspector.new```
-```i.top_ten```
-
-You can also find an arbitrary number of top commands, i.e. `i.top(n)`3.) Use IRB to check it out:
-
-```irb require './lib/inspector'\n i = Inspector.new\n i.top_ten```
-
+TODO:
+Take input from the command line to:
+  - [ ] Find top n commands
+  - [ ] Search for number of instances of a command
