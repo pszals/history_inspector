@@ -1,6 +1,7 @@
 class Inspector
   def initialize(history = File.read("history.txt"))
-    @history = history
+    @history ||= history
+    @command_counts ||= count_commands(isolated_commands)
   end
 
   def top(n)
@@ -11,16 +12,23 @@ class Inspector
     top(10)
   end
 
+  def count(command)
+    command_counts[command].to_i
+  end
+
   private
 
+  attr_accessor :command_counts
   attr_reader :history
 
   def top_commands
-    commands = history.split("\n").map do |line|
+    command_counts.sort_by { |_, count| count }.reverse
+  end
+
+  def isolated_commands
+    history.split("\n").map do |line|
       remove_line_numbers(line)
     end
-
-    count_commands(commands).sort_by { |_, count| count }.reverse
   end
 
   def count_commands(commands)
