@@ -1,12 +1,9 @@
 ## What are your most common command line commands?
 
-1.) Clone the repo, cd into it, and create a `history.txt` file:
+Clone the repo, cd into it, load your history into a `history.txt` file, then run the Ruby program:
 
-  `git clone git@github.com:pszals/history_inspector.git && cd history_inspector && touch history.txt && history > history.txt`
+  `git clone git@github.com:pszals/history_inspector.git && cd history_inspector && history > history.txt && ruby runner.rb`
 
-2.) Use Ruby to get your top ten most-used commands:
-
-  `ruby runner.rb`
 
 TODO:
 Take input from the command line to:
