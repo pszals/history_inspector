@@ -11,4 +11,4 @@
 TODO:
 Take input from the command line to:
   - [ ] Find top n commands
-  - [ ] Search for number of instances of a command
+  - [ ] Handle other user requests (i.e. re-printing the graph)

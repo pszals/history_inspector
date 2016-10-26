@@ -4,26 +4,36 @@ class Spy
   attr_accessor :output
   def initialize
     @output = []
+    @input = []
   end
 
   def puts(thing)
     output << thing
+  end
+
+  def gets
+    @input.pop
+  end
+
+  def load_input(command)
+    @input << command
   end
 end
 
 describe CLI do
   let(:formatted_results) { ["1 foo", "2 bar"] }
   let(:fake_results) { [["foo", 1], ["bar", 2]] }
-  let(:spy) { Spy.new }
-  let(:cli) { CLI.new(double, spy) }
+  let(:stdout_spy) { Spy.new }
+  let(:stdin_spy) { Spy.new }
+  let(:cli) { CLI.new(stdin_spy, stdout_spy) }
 
   it 'prints the top ten results with a graph' do
     allow_any_instance_of(Inspector).to receive(:top_ten).and_return(fake_results)
 
     cli.print_top_ten
 
-    expect(spy.output.first).to eq(formatted_results)
-    expect(spy.output.last).to include(cli.bar_graph(fake_results))
+    expect(stdout_spy.output.first).to eq(formatted_results)
+    expect(stdout_spy.output.last).to include(cli.bar_graph(fake_results))
   end
 
   it 'formats results' do
@@ -46,5 +56,18 @@ describe CLI do
     stats = [["foo", foo_count], ["bar", bar_count ]]
 
     expect(cli.out_of_100(stats)).to eq([["foo", 75], ["bar", 25]])
+  end
+
+  it 'gets user input' do
+    stdin_spy.load_input("foo\n")
+    expect(cli.get_input).to eq("foo")
+  end
+
+  it 'displays the count for a given command from the user' do
+    allow_any_instance_of(Inspector).to receive(:count).and_return("1")
+    stdin_spy.load_input("")
+    cli.show_count_for_command
+
+    expect(stdout_spy.output.first).to eq("1")
   end
 end

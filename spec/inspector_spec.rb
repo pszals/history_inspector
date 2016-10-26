@@ -1,4 +1,5 @@
 require './lib/inspector'
+
 describe Inspector do
   let(:history)  { "1  one command \n2  two command two\n2  two command two" }
   let(:commands) { ["1  a", "2  b", "3  c", "4  d", "5  e", "6  f", "7  g", "8  h", "9  i", "10  j", "11  k"].join("\n") }
