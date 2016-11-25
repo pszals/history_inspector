@@ -3,10 +3,10 @@ require './lib/inspector'
 class CLI
   attr_reader :stdin, :stdout, :inspector
 
-  def initialize(stdin = STDIN, stdout = STDOUT)
+  def initialize(stdin = STDIN, stdout = STDOUT, path_to_histfile='history.txt')
     @stdin = stdin
     @stdout = stdout
-    @inspector ||= Inspector.new
+    @inspector ||= Inspector.new(read_and_encode(path_to_histfile))
   end
 
   def print_top_ten
@@ -35,5 +35,9 @@ class CLI
 
   def get_input
     command = stdin.gets.chomp
+  end
+
+  def read_and_encode(history)
+    File.read(history).encode("UTF-16be", :invalid=>:replace, :replace=>"?").encode('UTF-8')
   end
 end

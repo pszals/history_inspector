@@ -1,5 +1,5 @@
 class Inspector
-  def initialize(history = File.read("history.txt"))
+  def initialize(history)
     @history ||= history
     @command_counts ||= count_commands(isolated_commands)
   end
@@ -40,11 +40,21 @@ class Inspector
   end
 
   def remove_line_numbers(line)
-    line.lstrip.split(/\d+../, 2)[1]
+    if line_comes_from_histfile?(line)
+      line.split(/:.*;/)[1]
+    else
+      line.lstrip.split(/\d+../, 2)[1]
+    end
   end
 
   def combine_first_two(line)
-    commands = line.split(" ", 3)
-    commands[1] ? [commands[0], commands[1]].join(" ") : commands[0]
+    if line
+      commands = line.split(" ", 3)
+      commands[1] ? [commands[0], commands[1]].join(" ") : commands[0]
+    end
+  end
+
+  def line_comes_from_histfile?(line)
+    line[0] == ':'
   end
 end

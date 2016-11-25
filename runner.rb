@@ -1,6 +1,6 @@
 require './lib/cli'
 
-cli = CLI.new
+cli = CLI.new(STDIN, STDOUT, ARGV[0])
 cli.print_top_ten
 
 while true
