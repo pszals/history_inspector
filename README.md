@@ -9,5 +9,6 @@ TODO:
 Take input from the command line to:
   - [ ] Find top n commands
   - [ ] Handle other user requests (i.e. re-printing the graph)
+  - [ ] Query against a time range to map by month
 
 To run all the specs, execute `bundle exec rspec`. For continuously running the tests, use `bundle exec guard start`.

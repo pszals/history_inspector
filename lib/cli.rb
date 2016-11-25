@@ -1,4 +1,5 @@
 require './lib/inspector'
+require 'ascii_charts'
 
 class CLI
   attr_reader :stdin, :stdout, :inspector
@@ -10,8 +11,14 @@ class CLI
   end
 
   def print_top_ten
-    stdout.puts format_results(inspector.top_ten)
-    stdout.puts bar_graph(inspector.top_ten)
+    stats = inspector.top_ten
+    stdout.puts format_results(stats)
+    stdout.puts ascii_chart(stats)
+    stdout.puts bar_graph(stats)
+  end
+
+  def ascii_chart(stats)
+    AsciiCharts::Cartesian.new(stats).draw
   end
 
   def bar_graph(stats)
