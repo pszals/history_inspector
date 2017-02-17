@@ -2,7 +2,9 @@
 
 Clone the repo, cd into it, and run the Ruby program, passing the path to your histfile like so:
 
-  `git clone git@github.com:pszals/history_inspector.git && cd history_inspector && ruby runner.rb $HISTFILE`
+  `git clone git@github.com:pszals/history_inspector.git && cd history_inspector && bundle && ruby runner.rb $HISTFILE`
+
+Prerequisites: Ruby 2.0+, Bundler
 
 
 TODO:
