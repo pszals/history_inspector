@@ -1,4 +1,6 @@
-$LOAD_PATH.unshift File.realdirpath('lib', __dir__)
+#! /usr/bin/env ruby
+
+$LOAD_PATH.unshift File.realdirpath('../lib', __dir__)
 
 require 'history_inspector/cli'
 
