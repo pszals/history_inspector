@@ -4,10 +4,10 @@ require 'ascii_charts'
 class CLI
   attr_reader :stdin, :stdout, :inspector
 
-  def initialize(stdin = STDIN, stdout = STDOUT, path_to_histfile='history.txt')
+  def initialize(stdin, stdout, history)
     @stdin = stdin
     @stdout = stdout
-    @inspector ||= Inspector.new(read_and_encode(path_to_histfile))
+    @inspector ||= Inspector.new(encode(history))
   end
 
   def print_top_ten
@@ -44,7 +44,7 @@ class CLI
     command = stdin.gets.chomp
   end
 
-  def read_and_encode(history)
-    File.read(history).encode("UTF-16be", :invalid=>:replace, :replace=>"?").encode('UTF-8')
+  def encode(history)
+    history.encode("UTF-16be", :invalid=>:replace, :replace=>"?").encode('UTF-8')
   end
 end

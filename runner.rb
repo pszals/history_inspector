@@ -1,6 +1,15 @@
 require './lib/cli'
 
-cli = CLI.new(STDIN, STDOUT, ARGV[0])
+oldstyle_filename = ARGV[0]
+if oldstyle_filename
+  history = File.read oldstyle_filename
+else
+  history = $stdin.read
+end
+
+$stdin.reopen "/dev/tty" unless $stdin.tty?
+
+cli = CLI.new(STDIN, STDOUT, history)
 cli.print_top_ten
 
 while true

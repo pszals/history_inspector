@@ -25,7 +25,7 @@ describe CLI do
   let(:fake_results) { [["foo", 1], ["bar", 2]] }
   let(:stdout_spy) { Spy.new }
   let(:stdin_spy) { Spy.new }
-  let(:cli) { CLI.new(stdin_spy, stdout_spy) }
+  let(:cli) { CLI.new(stdin_spy, stdout_spy, 'some history') }
 
   it 'prints the top ten results with a graph' do
     allow_any_instance_of(Inspector).to receive(:top_ten).and_return(fake_results)
