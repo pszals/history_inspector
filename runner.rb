@@ -9,7 +9,7 @@ end
 
 $stdin.reopen "/dev/tty" unless $stdin.tty?
 
-cli = CLI.new(STDIN, STDOUT, history)
+cli = CLI.new($stdin, $stdout, history)
 cli.print_top_ten
 
 while true
