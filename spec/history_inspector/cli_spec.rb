@@ -1,4 +1,4 @@
-require './lib/cli'
+require 'history_inspector/cli'
 
 class Spy
   attr_accessor :output

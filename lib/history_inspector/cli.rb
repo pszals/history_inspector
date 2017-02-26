@@ -1,4 +1,4 @@
-require './lib/inspector'
+require 'history_inspector/inspector'
 require 'ascii_charts'
 
 class CLI

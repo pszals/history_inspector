@@ -1,4 +1,6 @@
-require './lib/cli'
+$LOAD_PATH.unshift File.realdirpath('lib', __dir__)
+
+require 'history_inspector/cli'
 
 oldstyle_filename = ARGV[0]
 if oldstyle_filename

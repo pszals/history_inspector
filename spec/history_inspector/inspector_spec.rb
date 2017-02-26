@@ -1,4 +1,4 @@
-require './lib/inspector'
+require 'history_inspector/inspector'
 
 describe Inspector do
   let(:history)  { "1  one command \n2  two command two\n2  two command two" }
